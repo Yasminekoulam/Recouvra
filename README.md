@@ -58,7 +58,7 @@ L’Institut Pasteur de Casablanca commercialise des produits (ex. : vaccins) à
 - **BandeReception** : date, bandeLivraison
 - **Facture** : montant, date émission, échéance, payée, client, bandeReception
 - **TentativeRecouvrement** : date, méthode, statut, réponse client, user, facture
-
+![img.png](img.png)
 ---
 
 ## 💡 Technologies utilisées
