@@ -5,7 +5,11 @@ Application web développée avec Spring Boot, Spring Security et PostgreSQL pou
 
 ## 🧠 Contexte
 L’Institut Pasteur de Casablanca commercialise des produits (ex. : vaccins) à des clients variés. Après livraison, le processus de recouvrement des paiements est manuel et non centralisé (emails, appels, visites, etc.). Le projet consiste vise à digitaliser le suivi des factures impayées et à faciliter le travail des agents de recouvrement à travers une application web interne.
+![img.png](img.png)
 
+Timeline :
+
+![img_4.png](img_4.png)
 ---
 
 ## 🎯 Objectifs
@@ -58,7 +62,6 @@ L’Institut Pasteur de Casablanca commercialise des produits (ex. : vaccins) à
 - **BandeReception** : date, bandeLivraison
 - **Facture** : montant, date émission, échéance, payée, client, bandeReception
 - **TentativeRecouvrement** : date, méthode, statut, réponse client, user, facture
-![img.png](img.png)
 ---
 
 ## 💡 Technologies utilisées

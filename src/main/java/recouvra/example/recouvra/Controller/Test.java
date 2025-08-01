@@ -8,7 +8,7 @@ public class Test {
 
     @GetMapping("/test")
     public String test() {
-        return "L'application marche 🎉";
+        return "L'application marche !";
     }
 }
 
