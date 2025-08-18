@@ -44,5 +44,10 @@ public class FactureService {
             return factureRepository.save(facture);
         }).orElseThrow(() -> new RuntimeException("Facture non trouvée"));
     }
-
+    public long getNombreFacturesEnRetard() {
+        return factureRepository.countFacturesEnRetard();
+    }
+    public double getMontantTotalFacturesEnRetard() {
+        return factureRepository.sumMontantFacturesEnRetard();
+    }
 }

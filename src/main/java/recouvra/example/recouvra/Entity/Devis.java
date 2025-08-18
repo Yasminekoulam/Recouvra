@@ -1,27 +1,29 @@
 package recouvra.example.recouvra.Entity;
 
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
 import java.time.LocalDate;
-import lombok.*;
 @Getter
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-
 @Entity
-@Table(name = "bande_livraison")
-public class BandeLivraison {
+public class Devis {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private LocalDate dateLivraison;
+    private LocalDate date;
 
     @ManyToOne
     @JoinColumn(name = "client_id")
     private Client client;
 
-    @OneToOne(mappedBy = "bandeLivraison", cascade = CascadeType.ALL)
-    private BandeReception reception;
+
 }
 

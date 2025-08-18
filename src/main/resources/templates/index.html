@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard Recouvrement</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <style>
+        .late-badge {
+            @apply px-2 py-1 rounded-full text-xs font-semibold bg-red-100 text-red-800;
+        }
+        .action-btn {
+            @apply text-blue-600 hover:text-blue-800 mr-3;
+        }
+        #tentative-modal {
+            z-index: 1000;
+        }
+    </style>
+</head>
+<body class="bg-gray-50 p-6">
+<div class="max-w-7xl mx-auto">
+    <h1 class="text-3xl font-bold text-gray-800 mb-2">Dashboard Recouvrement</h1>
+    <p class="text-gray-600 mb-8">Gérez vos factures en retard et vos tentatives de recouvrement</p>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
+        <div class="bg-white p-6 rounded-lg shadow border-l-4 border-blue-500">
+            <h2 class="text-lg font-semibold text-gray-700 mb-2">Factures en retard</h2>
+            <p id="factures-count" class="text-3xl font-bold">...</p>
+        </div>
+        <div class="bg-white p-6 rounded-lg shadow border-l-4 border-red-500">
+            <h2 class="text-lg font-semibold text-gray-700 mb-2">Montant en retard</h2>
+            <p id="montant-total" class="text-3xl font-bold">...</p>
+        </div>
+    </div>
+
+    <div class="bg-white rounded-lg shadow overflow-hidden">
+        <div class="px-6 py-4 border-b">
+            <h2 class="text-xl font-semibold">Factures en retard (<span id="factures-count-header">0</span>)</h2>
+        </div>
+        <div class="overflow-x-auto">
+            <table class="min-w-full divide-y divide-gray-200">
+                <thead class="bg-gray-50">
+                <tr>
+                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">N° Facture</th>
+                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Client</th>
+                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Montant</th>
+                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Échéance</th>
+                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Statut</th>
+                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Dernière tentative</th>
+                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Actions</th>
+                </tr>
+                </thead>
+                <tbody id="factures-body" class="divide-y divide-gray-200">
+                <!-- Rempli dynamiquement par app.js -->
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<!-- Modal pour ajouter une tentative -->
+<div id="tentative-modal" class="hidden fixed inset-0 bg-gray-600 bg-opacity-50 flex items-center justify-center">
+    <div class="bg-white rounded-lg p-6 max-w-md w-full">
+        <h3 class="text-xl font-bold mb-4">Ajouter une tentative</h3>
+
+        <input type="hidden" id="modal-facture-id">
+
+        <div class="mb-4">
+            <p><strong>Client:</strong> <span id="modal-client"></span></p>
+            <p><strong>Montant:</strong> <span id="modal-montant"></span></p>
+        </div>
+
+        <form id="tentative-form">
+            <div class="mb-4">
+                <label class="block text-gray-700 mb-2">Méthode de contact *</label>
+                <select id="methode" class="w-full p-2 border rounded" required>
+                    <option value="">Sélectionner</option>
+                    <option value="EMAIL">EMAIL</option>
+                    <option value="APPEL">APPEL</option>
+                    <option value="VISITE">VISITE</option>
+                </select>
+            </div>
+
+            <div class="mb-4">
+                <label class="block text-gray-700 mb-2">Statut de la tentative *</label>
+                <select id="statut" class="w-full p-2 border rounded" required>
+                    <option value="">Sélectionner</option>
+                    <option value="ENVOYÉ">ENVOYÉ</option>
+                    <option value="AUCUNE_REPONSE">AUCUNE_REPONSE</option>
+                    <option value="PROMESSE_DE_PAIMENT">PROMESSE_DE_PAIMENT</option>
+                    <option value="PAIMENT_PARTIEL">PAIMENT_PARTIEL</option>
+                    <option value="PAIMENT_COMPLET">PAIMENT_COMPLET</option>
+                    <option value="CONTESTATION">CONTESTATION</option>
+                </select>
+            </div>
+
+            <div class="flex justify-end">
+                <button type="button" onclick="document.getElementById('tentative-modal').classList.add('hidden')"
+                        class="mr-2 px-4 py-2 bg-gray-300 rounded">
+                    Annuler
+                </button>
+                <button type="button" onclick="addTentative()"
+                        class="px-4 py-2 bg-blue-500 text-white rounded">
+                    Enregistrer
+                </button>
+            </div>
+        </form>
+    </div>
+</div>
+<script src="/js/app.js"></script>
+</body>
+</html>

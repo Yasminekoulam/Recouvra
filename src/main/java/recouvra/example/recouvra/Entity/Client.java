@@ -6,7 +6,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import java.util.Set;
+
 @Getter
 @Setter
 @AllArgsConstructor
@@ -24,9 +24,4 @@ public class Client {
     private String tel;
     private String adresse;
 
-    @OneToMany(mappedBy = "client")
-    private Set<BandeLivraison> livraisons;
-
-    @OneToMany(mappedBy = "client")
-    private Set<Facture> factures;
 }

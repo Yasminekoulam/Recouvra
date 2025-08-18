@@ -8,6 +8,8 @@ import lombok.Setter;
 import recouvra.example.recouvra.Enum.MethodeRecouvrement;
 import recouvra.example.recouvra.Enum.StatutRecouvrement;
 import java.time.LocalDateTime;
+import java.util.Date;
+
 @Getter
 @Setter
 @AllArgsConstructor
@@ -20,7 +22,7 @@ public class TentativeRecouvrement {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private LocalDateTime date;
+    private Date date;
 
     @Enumerated(EnumType.STRING)
     private MethodeRecouvrement methode;
@@ -28,11 +30,9 @@ public class TentativeRecouvrement {
     @Enumerated(EnumType.STRING)
     private StatutRecouvrement statut;
 
-    private String reponseClient;
-
     @ManyToOne
-    @JoinColumn(name = "utilisateur_id")
-    private utilisateur utilisateur;
+    @JoinColumn(name = "user_id")
+    private User user;
 
     @ManyToOne
     @JoinColumn(name = "facture_id")

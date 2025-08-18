@@ -6,7 +6,6 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import java.time.LocalDate;
 import java.util.Set;
 @Getter
 @Setter
@@ -14,19 +13,17 @@ import java.util.Set;
 @NoArgsConstructor
 
 @Entity
-@Table(name = "bande_reception")
-public class BandeReception {
+@Table(name = "users")
+public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private LocalDate dateReception;
+    private String username;
+    private String password;
+    private String role;
+    private String email;
 
-    @OneToOne
-    @JoinColumn(name = "bande_livraison_id", unique = true)
-    private BandeLivraison bandeLivraison;
-
-    @OneToMany(mappedBy = "bandeReception")
-    private Set<Facture> factures;
+    @OneToMany(mappedBy = "user")
+    private Set<TentativeRecouvrement> tentatives;
 }
-

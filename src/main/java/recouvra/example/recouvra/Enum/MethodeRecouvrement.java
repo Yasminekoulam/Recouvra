@@ -1,5 +1,5 @@
 package recouvra.example.recouvra.Enum;
 
 public enum MethodeRecouvrement {
-    EMAIL, APPEL, VISITE
+    EMAIL, APPEL, VISITE;
 }

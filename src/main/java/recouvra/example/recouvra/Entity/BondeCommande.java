@@ -6,34 +6,28 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import java.math.BigDecimal;
 import java.time.LocalDate;
-import java.util.Date;
 import java.util.Set;
+
 @Getter
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-
 @Entity
-@Table(name = "facture")
-public class Facture {
+public class BondeCommande {
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private BigDecimal montant;
-    private LocalDate dateEmission;
-    private Date dateEcheance;
-    private boolean payee;
+    private LocalDate dateCommande;
 
     @ManyToOne
     @JoinColumn(name = "client_id")
     private Client client;
 
-    @ManyToOne
-    @JoinColumn(name = "bonde_reception_id")
-    private BondeReception bondeReception;
+    @OneToOne
+    @JoinColumn(name = "devis_id", unique = true)
+    private Devis devis;
 
-    @OneToMany(mappedBy = "facture")
-    private Set<TentativeRecouvrement> tentatives;
+    @OneToMany(mappedBy = "bondeCommande")
+    private Set<BondeLivraison> bondeLivraisons;
 }
